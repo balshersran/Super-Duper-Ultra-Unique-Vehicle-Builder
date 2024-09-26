@@ -17,7 +17,7 @@ class Truck extends Vehicle implements AbleToTow {
     year: number;
     weight: number;
     topSpeed: number;
-    wheels: Wheel[] = [];
+    wheels: Wheel[];
     towingCapacity: number;
   // TODO: Create a constructor that accepts the properties of the Truck class
   // TODO: The constructor should call the constructor of the parent class, Vehicle
@@ -32,7 +32,7 @@ class Truck extends Vehicle implements AbleToTow {
       weight: number,
       topSpeed: number,
       wheels: Wheel [],
-      towingCapacity: number
+      towingCapacity: number,
     ) {
 
       // TODO: The constructor should call the constructor of the parent class, Vehicle
@@ -78,15 +78,16 @@ class Truck extends Vehicle implements AbleToTow {
     super.printDetails();
 
     // TODO: The method should log the details of the Truck
+    // TODO: The details should include the VIN, make, model, year, weight, top speed, color, towing capacity, and wheels
     console.log(`VIN: ${this.vin}`);
-    console.log(`Color: ${this.color}`);
     console.log(`Make: ${this.make}`);
     console.log(`Model: ${this.model}`);
     console.log(`Year: ${this.year}`);
     console.log(`Weight: ${this.weight} lbs`);
     console.log(`Top Speed: ${this.topSpeed} mph`);
+    console.log(`Color: ${this.color}`);
+    console.log(`Towing Capacity: ${this.towingCapacity}`);
 
-    // TODO: The details should include the VIN, make, model, year, weight, top speed, color, towing capacity, and wheels
     console.log(
       `Wheel 1: ${this.wheels[0].getDiameter} inch with a ${this.wheels[0].getTireBrand} tire`
     );
