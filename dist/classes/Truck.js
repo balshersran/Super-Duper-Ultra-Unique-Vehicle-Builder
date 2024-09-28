@@ -1,5 +1,7 @@
 // import the Vehicle, Motorbike, Car, Wheel, and AbleToTow classes/interfaces
 import Vehicle from './Vehicle.js';
+import Motorbike from './Motorbike.js';
+import Car from './Car.js';
 import Wheel from './Wheel.js';
 // TODO: The Truck class should extend the Vehicle class and should implement the AbleToTow interface
 class Truck extends Vehicle {
@@ -31,12 +33,11 @@ class Truck extends Vehicle {
     // TODO: Implement the tow method from the AbleToTow interface
     tow(vehicle) {
         // TODO: Get the make an model of the vehicle if it exists
-        let name;
-        if ('make' in vehicle && 'model' in vehicle) {
-            name = `${vehicle.make} ${vehicle.model}`;
-        }
-        else {
-            name = 'Vehicle';
+        let towVehicle;
+        // TODO: If the vehicle is a Motorbike or a Car, get their make and model
+        if (vehicle instanceof Motorbike || vehicle instanceof Car) {
+            towVehicle = vehicle;
+            console.log(`${vehicle.make} ${vehicle.model}`);
         }
         // TODO: Check if the vehicle's weight is less than or equal to the truck's towing capacity
         if (vehicle.weight <= this.towingCapacity) {
