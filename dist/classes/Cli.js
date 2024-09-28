@@ -378,10 +378,11 @@ class Cli {
                     }
                     if (motorbike) {
                         motorbike.performWheelie();
+                        return this.performActions();
                     }
                     else if (!motorbike) {
                         console.log('Please select Motorbike in order to do a Wheelie!');
-                        return this.startCli();
+                        return this.chooseVehicle();
                     }
                 }
             }
