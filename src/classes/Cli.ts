@@ -398,7 +398,11 @@ class Cli {
               truck = this.vehicles[i] as Truck;
             } 
             if(truck) {
-              truck.tow(this.vehicles[i]);
+              this.findVehicleToTow();
+              return;
+            } else if(!truck) {
+              console.log('Please select a Truck in order to tow other vehicles.');
+              return this.chooseVehicle();
             }
           } 
          }
@@ -411,6 +415,9 @@ class Cli {
             }
             if(motorbike){
               motorbike.performWheelie();
+            } else  if(!motorbike) {
+              console.log('Please select Motorbike in order to do a Wheelie!');
+              return this.startCli();
             }
           }
         }
