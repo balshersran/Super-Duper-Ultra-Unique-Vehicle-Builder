@@ -365,15 +365,14 @@ class Cli {
                 }
             }
             // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
-            else if (answers.actions === 'Wheelie') {
+            else if (answers.action === 'Wheelie') {
                 let motorbike;
                 for (let i = 0; i < this.vehicles.length; i++) {
                     if (this.vehicles[i].vin === this.selectedVehicleVin && this.vehicles[i] instanceof Motorbike) {
                         motorbike = this.vehicles[i];
                     }
-                    if (motorbike) {
+                    if (motorbike instanceof Motorbike) {
                         motorbike.performWheelie();
-                        this.performActions();
                     }
                 }
             }
