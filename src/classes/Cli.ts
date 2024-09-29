@@ -276,7 +276,7 @@ class Cli {
 
   // method to find a vehicle to tow
   // TODO: add a parameter to accept a truck object
-  findVehicleToTow(): void {
+  findVehicleToTow(vehicle: Truck): void {
     inquirer
       .prompt([
         {
@@ -293,15 +293,14 @@ class Cli {
       ])
       .then((answers) => {
         // TODO: check if the selected vehicle is the truck
-        if (answers.actions === Truck) {
+        if (answers.vehicleToTow.vin === vehicle.vin) {
           // TODO: if it is, log that the truck cannot tow itself then perform actions on the truck to allow the user to select another action
-          console.log(`${this.vehicles} cannot tow itself!`)
-          return this.findVehicleToTow();
+          console.log('Truck cannont tow itselt.');
+          this.performActions();
         } else {
           // TODO: if it is not, tow the selected vehicle then perform actions on the truck to allow the user to select another action
-          console.log(`${this.vehicles} is now being towed. Please select/create another vehicle.`)
-          this.chooseVehicle();
-          return;
+          vehicle.tow(answers.vehicleToTow);
+          this.performActions();
         }
       });
   }
@@ -398,12 +397,9 @@ class Cli {
               truck = this.vehicles[i] as Truck;
             }
             if (truck) {
-              this.findVehicleToTow();
+              this.findVehicleToTow(truck);
               return;
-            } else if (!truck) {
-              console.log('Please select a Truck in order to tow other vehicles.');
-              return this.chooseVehicle();
-            }
+            } 
           }
         }
         // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
@@ -415,11 +411,8 @@ class Cli {
             }
             if (motorbike) {
               motorbike.performWheelie();
-              return this.performActions();
-            } else if (!motorbike) {
-              console.log('Please select Motorbike in order to do a Wheelie!');
-              return this.chooseVehicle();
-            }
+              this.performActions();
+            } 
           }
         }
         else if (answers.action === 'Select or create another vehicle') {

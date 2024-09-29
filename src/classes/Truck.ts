@@ -57,24 +57,26 @@ class Truck extends Vehicle implements AbleToTow {
     }
   }
   // TODO: Implement the tow method from the AbleToTow interface
-  tow(vehicle: Truck | Motorbike | Car ): void {
-    // TODO: Get the make an model of the vehicle if it exists
-   let towVehicle: Truck | Motorbike | Car ;
-    // TODO: If the vehicle is a Motorbike or a Car, get their make and model
+  tow(vehicle: Truck | Motorbike | Car): void {
+    // // TODO: Get the make an model of the vehicle if it exists
+    let towVehicle: string;
+    // // TODO: If the vehicle is a Motorbike or a Car, get their make and model
     if (vehicle instanceof Motorbike || vehicle instanceof Car) {
-      towVehicle = vehicle as Motorbike | Car;
-      console.log(`${vehicle.make} ${vehicle.model}`);
-    } 
+      towVehicle = `${vehicle.make} ${vehicle.model}`;
+    } else {
+      console.log('Only Motorbikes and Cars can be towed.');
+      return;
+    }
     // TODO: Check if the vehicle's weight is less than or equal to the truck's towing capacity
     if (vehicle.weight <= this.towingCapacity) {
       // TODO: If it is, log that the vehicle is being towed
-      console.log(`${name} is now being towed.`)
+      console.log(`${towVehicle} is now being towed.`)
     } else {
       // TODO: If it is not, log that the vehicle is too heavy to be towed
-      console.log(`${name} is too heavy to be towed.`)
+      console.log(`${towVehicle} is too heavy to be towed.`)
     }
   }
-  
+
 
   // TODO: Override the printDetails method from the Vehicle class
   override printDetails(): void {
